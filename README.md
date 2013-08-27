@@ -1,5 +1,12 @@
 # Rebuilding CERIT-SC's VM templates
 
+Following scripts are used for rebuilding basic OpenNebula's VM templates in CERIT-SC.
+
+### Requirements
+
+* ONE tools (`onetemplate`)
+* `make`, `m4`
+
 ## Public templates
 
 All
