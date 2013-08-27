@@ -1,0 +1,16 @@
+define(__ONEADMIN__,            cerit-sc-admin) dnl
+define(__VCPU__,                1) dnl
+define(__SOCKETS__,             1) dnl
+define(__THREADS__,             1) dnl
+define(__CPU__,                 __VCPU__) dnl
+define(__DEV_PREFIX__,          vd) dnl
+define(__NETWORK_MODEL__,       virtio) dnl
+define(__IMAGE_UNAME__,         __ONEADMIN__) dnl
+define(__NETWORK1_UNAME__,      __ONEADMIN__) dnl
+define(__NETWORK2_UNAME__,      __ONEADMIN__) dnl
+define(__SWAP_SIZE__,           4096) dnl
+define(__CPU_MODE__,	        host-model) dnl
+define(__DATADISK_MOUNT__,      /mnt/data) dnl
+define(__DATADISK_DRIVER__,     raw) dnl
+define(__DATADISK_FORMAT__,     ext4) dnl
+define(__DATADISK_MOUNTOPTS__,  `noatime,nodiratime,nosuid,nodev,data=writeback,barrier=0,errors=remount-ro,usrquota') dnl
