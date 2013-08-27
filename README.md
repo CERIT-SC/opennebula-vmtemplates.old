@@ -1,4 +1,4 @@
-# Rebuilding CERIT-SC's VM templates
+# Building CERIT-SC's VM templates
 
 Following scripts are used for rebuilding basic OpenNebula's VM templates in CERIT-SC.
 
