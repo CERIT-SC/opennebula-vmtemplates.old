@@ -46,8 +46,8 @@ endef
 # args: <ON name> <ON mode> <vcpus> <mem[GiB]> <swap[GiB]> <data[GiB]> <ON image> <m4 args>
 define onetemplate_cloud
 	$(if $6,
-		$(eval NAME := CERIT-SC $1 ($3 VCPU / $(4)GiB RAM / $(6)GiB data)),
-		$(eval NAME := CERIT-SC $1 ($3 VCPU / $(4)GiB RAM)))
+		$(eval NAME := CERIT-SC $1 ($3 VCPU - $(4)GiB RAM - $(6)GiB data)),
+		$(eval NAME := CERIT-SC $1 ($3 VCPU - $(4)GiB RAM)))
 
 	$(if $4, $(eval D_MEMORY := -D__MEMORY__=$(shell echo $(4)*1024 | bc)))
 	$(if $5, $(eval D_SWAP_SIZE := -D__SWAP_SIZE__=$(shell echo $(5)*1024 | bc)))
@@ -87,12 +87,12 @@ centos6:
 	$(call onetemplate_cloud_brno,CentOS 6 x86-64,,2,8,4,,$(IMAGE_C6))
 
 mysql51:
-	$(call onetemplate_cloud_brno,application: MySQL 5.1,,2,4,8,50,$(IMAGE_D6),\
+	$(call onetemplate_cloud_brno,application - MySQL 5.1,,2,4,8,50,$(IMAGE_D6),\
 		-D__DATADISK_MOUNT__=/var/lib/mysql \
 		-D__CLOUD_CONFIG__="include(mysql51.xml.m4)")
 
 zenoss4:
-	$(call onetemplate_cloud_brno,application: Zenoss Core 4,600,4,16,16,12,$(IMAGE_C6),\
+	$(call onetemplate_cloud_brno,application - Zenoss Core 4,600,4,16,16,12,$(IMAGE_C6),\
 		-D__DATADISK_MOUNT__=/opt \
 		-D__CLOUD_CONFIG__="include(zenoss4.xml.m4)")
 
