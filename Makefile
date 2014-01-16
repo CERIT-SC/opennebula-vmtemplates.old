@@ -73,12 +73,12 @@ endef
 
 debian6: 
 	$(call onetemplate_cloud_brno,Debian 6.0 x86-64,,1,1,4,,$(IMAGE_D6))
-	$(call onetemplate_cloud_brno,Debian 6.0 x86-64,,1,2,4,,$(IMAGE_D6))
-	$(call onetemplate_cloud_brno,Debian 6.0 x86-64,,2,4,4,,$(IMAGE_D6))
-	$(call onetemplate_cloud_brno,Debian 6.0 x86-64,,2,8,4,,$(IMAGE_D6))
 
 debian7:
-	$(call onetemplate_cloud_brno,Debian 7.0beta x86-64,,1,1,4,,$(IMAGE_D7))
+	$(call onetemplate_cloud_brno,Debian 7.0 x86-64,,1,1,4,,$(IMAGE_D7))
+	$(call onetemplate_cloud_brno,Debian 7.0 x86-64,,1,2,4,,$(IMAGE_D7))
+	$(call onetemplate_cloud_brno,Debian 7.0 x86-64,,2,4,4,,$(IMAGE_D7))
+	$(call onetemplate_cloud_brno,Debian 7.0 x86-64,,2,8,4,,$(IMAGE_D7))
 
 centos6:
 	$(call onetemplate_cloud_brno,CentOS 6 x86-64,,1,1,4,,$(IMAGE_C6))
