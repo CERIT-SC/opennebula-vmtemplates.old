@@ -1,6 +1,6 @@
 # ON image name prefixes
 IMAGE_D6=CERIT-SC-Debian-6.0-0031
-IMAGE_D7=CERIT-SC-Debian-7.0beta-0004
+IMAGE_D7=CERIT-SC-Debian-7-0004
 IMAGE_C6=CERIT-SC-CentOS-6-0013
 
 TMPL_GROUP=cerit-sc
@@ -13,7 +13,7 @@ all: cloud apps ha
 apps: mysql51 zenoss4
 	@echo 'Public application templates rebuilt'
 
-cloud: debian6 debian7 centos6
+cloud: debian7 centos6
 	@echo 'Public cloud templates rebuilt'
 
 ha: ha_brno ha_jihlava
@@ -70,9 +70,6 @@ define onetemplate_cloud_brno
 		-D__NETWORK1__='cerit-sc-cloud-public' \
 		-D__NETWORK2__='cerit-sc-cloud-private1')
 endef
-
-debian6: 
-	$(call onetemplate_cloud_brno,Debian 6.0 x86-64,,1,1,4,,$(IMAGE_D6))
 
 debian7:
 	$(call onetemplate_cloud_brno,Debian 7 x86-64,,1,1,4,,$(IMAGE_D7))
@@ -162,9 +159,9 @@ define onetemplate_ha
 endef
 
 ha_brno:
-	$(call onetemplate_ha,HA Brno Debian 6.0 x86-64,600,1,2,4,,cerit-sc-ha-brno,$(IMAGE_D6))
+	$(call onetemplate_ha,HA Brno Debian 7 x86-64,600,1,2,4,,cerit-sc-ha-brno,$(IMAGE_D7))
 	$(call onetemplate_ha,HA Brno CentOS 6 x86-64,600,1,2,4,,cerit-sc-ha-brno,$(IMAGE_C6))
 
 ha_jihlava:
-	$(call onetemplate_ha,HA Jihlava Debian 6.0 x86-64,600,1,2,4,,cerit-sc-ha-jihlava,$(IMAGE_D6))
+	$(call onetemplate_ha,HA Jihlava Debian 7 x86-64,600,1,2,4,,cerit-sc-ha-jihlava,$(IMAGE_D7))
 	$(call onetemplate_ha,HA Jihlava CentOS 6 x86-64,600,1,2,4,,cerit-sc-ha-jihlava,$(IMAGE_C6))

@@ -24,23 +24,23 @@ mounts:
 - [vde,__DATADISK_MOUNT__,__DATADISK_FORMAT__,format(`%s%s%s',RQ(),`__DATADISK_MOUNTOPTS__',RQ())]')
 
 apt_sources:
-- source: 'deb http://apt.puppetlabs.com/ squeeze main dependencies'
+- source: 'deb http://apt.puppetlabs.com/ wheezy main dependencies'
   keyid: 4BD6EC30
   filename: puppetlabs.list
 
 dnl yum_repos:
-dnl   puppetlabs-products:
-dnl     name: Puppet Labs Products \$releasever - \$basearch
-dnl     baseurl: http://yum.puppetlabs.com/el/\$releasever/products/\$basearch
-dnl     enabled: true
-dnl     gpgcheck: true
-dnl     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
-dnl   puppetlabs-deps:
-dnl     name: Puppet Labs Dependencies \$releasever - \$basearch
-dnl     baseurl: http://yum.puppetlabs.com/el/\$releasever/dependencies/\$basearch
-dnl     enabled: true
-dnl     gpgcheck: true
-dnl     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+dnl  puppetlabs-products:
+dnl    name: \\\"Puppet Labs Products \x24releasever - \x24basearch\\\"
+dnl    baseurl: \\\"http://yum.puppetlabs.com/el/\x24releasever/products/\x24basearch\\\"
+dnl    enabled: true
+dnl    gpgcheck: true
+dnl    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
+dnl  puppetlabs-deps:
+dnl    name: \\\"Puppet Labs Dependencies \x24releasever - \x24basearch\\\"
+dnl    baseurl: \\\"http://yum.puppetlabs.com/el/\x24releasever/dependencies/\x24basearch\\\"
+dnl    enabled: true
+dnl    gpgcheck: true
+dnl    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-puppetlabs
 
 packages: []
 

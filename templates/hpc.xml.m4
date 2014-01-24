@@ -21,7 +21,7 @@ mounts:
 - [vde,/scratch,ext4,'noatime,nodiratime,nosuid,data=writeback,nobh,barrier=0,errors=remount-ro']
 
 apt_sources:
-- source: 'deb http://apt.puppetlabs.com/ squeeze main dependencies'
+- source: 'deb http://apt.puppetlabs.com/ wheezy main dependencies'
   keyid: 4BD6EC30
   filename: puppetlabs.list
 
