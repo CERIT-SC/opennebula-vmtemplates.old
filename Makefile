@@ -1,7 +1,7 @@
 # ON image name prefixes
 IMAGE_D6=CERIT-SC-Debian-6.0-0031
-IMAGE_D7=CERIT-SC-Debian-7-0004
-IMAGE_C6=CERIT-SC-CentOS-6-0013
+IMAGE_D7=CERIT-SC-Debian-7-0011
+IMAGE_C6=CERIT-SC-CentOS-6-0015
 
 TMPL_GROUP=cerit-sc
 
@@ -10,7 +10,7 @@ HOST2IP=$(shell host $@ | grep ' has address ' | awk '{ print $$4 }')
 
 all: cloud apps ha
 
-apps: mysql51 zenoss4
+apps: mysql55 zenoss4
 	@echo 'Public application templates rebuilt'
 
 cloud: debian7 centos6
@@ -72,24 +72,24 @@ define onetemplate_cloud_brno
 endef
 
 debian7:
-	$(call onetemplate_cloud_brno,Debian 7 x86-64,,1,1,4,,$(IMAGE_D7))
-	$(call onetemplate_cloud_brno,Debian 7 x86-64,,1,2,4,,$(IMAGE_D7))
-	$(call onetemplate_cloud_brno,Debian 7 x86-64,,2,4,4,,$(IMAGE_D7))
-	$(call onetemplate_cloud_brno,Debian 7 x86-64,,2,8,4,,$(IMAGE_D7))
+	$(call onetemplate_cloud_brno,Debian 7 x64 *managed*,,1,2,4,,$(IMAGE_D7),\
+		-D__PUPPET__=1)
+
+	$(call onetemplate_cloud_brno,Debian 7 x64,,1,1,4,,$(IMAGE_D7))
+	$(call onetemplate_cloud_brno,Debian 7 x64,,1,2,4,,$(IMAGE_D7))
+	$(call onetemplate_cloud_brno,Debian 7 x64,,2,4,4,,$(IMAGE_D7))
+	$(call onetemplate_cloud_brno,Debian 7 x64,,2,8,4,,$(IMAGE_D7))
 
 centos6:
-	$(call onetemplate_cloud_brno,CentOS 6 x86-64,,1,1,4,,$(IMAGE_C6))
-	$(call onetemplate_cloud_brno,CentOS 6 x86-64,,1,2,4,,$(IMAGE_C6))
-	$(call onetemplate_cloud_brno,CentOS 6 x86-64,,2,4,4,,$(IMAGE_C6))
-	$(call onetemplate_cloud_brno,CentOS 6 x86-64,,2,8,4,,$(IMAGE_C6))
+	$(call onetemplate_cloud_brno,CentOS 6 x64,,1,1,4,,$(IMAGE_C6))
 
-mysql51:
-	$(call onetemplate_cloud_brno,application - MySQL 5.1,,2,4,8,50,$(IMAGE_D6),\
+mysql55:
+	$(call onetemplate_cloud_brno,app. - MySQL 5.5,,2,4,8,50,$(IMAGE_D7),\
 		-D__DATADISK_MOUNT__=/var/lib/mysql \
-		-D__CLOUD_CONFIG__="include(mysql51.xml.m4)")
+		-D__CLOUD_CONFIG__="include(mysql55.xml.m4)")
 
 zenoss4:
-	$(call onetemplate_cloud_brno,application - Zenoss Core 4,600,4,16,16,12,$(IMAGE_C6),\
+	$(call onetemplate_cloud_brno,app. - Zenoss Core 4,600,4,16,16,12,$(IMAGE_C6),\
 		-D__DATADISK_MOUNT__=/opt \
 		-D__CLOUD_CONFIG__="include(zenoss4.xml.m4)")
 

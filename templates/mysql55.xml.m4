@@ -4,19 +4,26 @@ packages:
 runcmd:
 - rmdir /var/lib/mysql/lost+found/
 - openssl rand -base64 32 >/root/mysql.pswd
-- mysql -u root -e 'delete from mysql.user where User='\''root'\'' and Host not in ('\''localhost'\'','\''127.0.0.1'\'')'
-- mysql -u root -e 'grant all on *.* to '\''cerit'\'' identified by '\'\LQ()cat /root/mysql.pswd\LQ()\'
+- mysql -u root -e \"delete from mysql.user where User='root' and Host not in ('localhost','127.0.0.1')\"
+- mysql -u root -e \"grant all on *.* to 'cerit' identified by 'LQ() cat /root/mysql.pswd LQ()'\"
 - mysql -u root -e 'flush privileges'
-- echo 'Instance is ready to use.' | wall
+- echo 'Initial configuration done by cloud-init, forcing reboot to apply changes.' | wall
 
 write_files:
 - path: /etc/motd
   content: |2
     
        ___ ___ ___  _ _____    ___  ___
-      / __| __| _ \| |_   _|__/ __|/ __|'s application template with MySQL 5.1
-     | (__| _||   /| | | ||___\__ \ (__    * db. user: cerit
-      \___|___|_|_\|_| |_|    |___/\___|   * passwd see /root/mysql.pswd
+      / __| __| _ \| |_   _|__/ __|/ __|'s application template
+     | (__| _||   /| | | ||___\__ \ (__      for MySQL 5.5
+      \___|___|_|_\|_| |_|    |___/\___|
+    
+     Remote access:
+      - database user: cerit
+      - password dumped into /root/mysql.pswd
+    
+     Remote connect:
+     # mysql -h servername -u cerit -p
      
 - path: /etc/mysql/my.cnf
   content: |2
@@ -24,15 +31,15 @@ write_files:
     
     # CLIENT #
     port                           = 3306
-    socket                         = /var/lib/mysql/mysql.sock
+    socket                         = /var/run/mysqld/mysqld.sock
     
     [mysqld]
     
     # GENERAL #
     user                           = mysql
     default-storage-engine         = InnoDB
-    socket                         = /var/lib/mysql/mysql.sock
-    pid-file                       = /var/lib/mysql/mysql.pid
+    socket                         = /var/run/mysqld/mysqld.sock
+    pid-file                       = /var/run/mysqld/mysqld.pid
     
     # MyISAM #
     key-buffer-size                = 32M
@@ -67,7 +74,9 @@ write_files:
     innodb-buffer-pool-size        = 2G
     
     # LOGGING #
-    log-error                      = /var/lib/mysql/mysql-error.log
+    log-error                      = /var/log/mysql/mysql-error.log
     log-queries-not-using-indexes  = 1
     slow-query-log                 = 1
-    slow-query-log-file            = /var/lib/mysql/mysql-slow.log
+    slow-query-log-file            = /var/log/mysql/mysql-slow.log
+    
+    !includedir /etc/mysql/conf.d/
