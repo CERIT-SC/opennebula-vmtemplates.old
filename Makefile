@@ -84,7 +84,7 @@ centos6:
 	$(call onetemplate_cloud_brno,CentOS 6 x64,,1,1,4,,$(IMAGE_C6))
 
 mysql55:
-	$(call onetemplate_cloud_brno,app. - MySQL 5.5,,2,4,8,50,$(IMAGE_D7),\
+	$(call onetemplate_cloud_brno,app. - MySQL 5.5,,2,16,8,100,$(IMAGE_D7),\
 		-D__DATADISK_MOUNT__=/var/lib/mysql \
 		-D__CLOUD_CONFIG__="include(mysql55.xml.m4)")
 
@@ -159,9 +159,9 @@ define onetemplate_ha
 endef
 
 ha_brno:
-	$(call onetemplate_ha,HA Brno Debian 7 x86-64,600,1,2,4,,cerit-sc-ha-brno,$(IMAGE_D7))
-	$(call onetemplate_ha,HA Brno CentOS 6 x86-64,600,1,2,4,,cerit-sc-ha-brno,$(IMAGE_C6))
+	$(call onetemplate_ha,HA Brno Debian 7 x64,600,1,2,4,,cerit-sc-ha-brno,$(IMAGE_D7))
+	$(call onetemplate_ha,HA Brno CentOS 6 x64,600,1,2,4,,cerit-sc-ha-brno,$(IMAGE_C6))
 
 ha_jihlava:
-	$(call onetemplate_ha,HA Jihlava Debian 7 x86-64,600,1,2,4,,cerit-sc-ha-jihlava,$(IMAGE_D7))
-	$(call onetemplate_ha,HA Jihlava CentOS 6 x86-64,600,1,2,4,,cerit-sc-ha-jihlava,$(IMAGE_C6))
+	$(call onetemplate_ha,HA Jihlava Debian 7 x64,600,1,2,4,,cerit-sc-ha-jihlava,$(IMAGE_D7))
+	$(call onetemplate_ha,HA Jihlava CentOS 6 x64,600,1,2,4,,cerit-sc-ha-jihlava,$(IMAGE_C6))
